@@ -1,506 +1,546 @@
 <html><head><title>全國會考成績AI生成全面分析報告</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <style>
-      @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&display=swap');
-    
-      :root {
-        --primary-color: #0099ff;
-        --secondary-color: #2ecc71;
-        --background-color: #ecf0f1;
-        --text-color: #34495e;
-        --card-bg: #ffffff;
-        --table-header-bg: #3498db;
-        --table-even-row: #f2f2f2;
-      }
-    
-      body {
-        font-family: 'Noto Sans TC', sans-serif;
-        background-color: var(--background-color);
-        color: var(--text-color);
-        line-height: 1.6;
-        margin: 0;
-        padding: 0;
-        user-select: none;
-        -webkit-user-select: none;
-        -moz-user-select: none;
-        -ms-user-select: none;
-      }
-    
-      .header {
-        background: linear-gradient(135deg, #f1faff, #cceafe);
-        color: white;
-        text-align: center;
-        padding: 60px 0;
-        margin-bottom: 30px;
-        clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
-      }
-    
-      .header h1 {
-        margin: 0;
-        font-size: 2.8em;
-        text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-      }
-    
-      .container {
-        max-width: 1200px;
-        margin: 0 auto;
-        padding: 0 20px;
-      }
-    
-      .content {
-        background-color: var(--card-bg);
-        border-radius: 8px;
-        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-        padding: 30px;
-        margin-bottom: 30px;
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
-      }
-    
-      .content:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
-      }
-    
-      h1, h2, h3 {
-        color: var(--primary-color);
-        margin-top: 0;
-      }
-    
-      h2 {
-        border-bottom: 2px solid var(--primary-color);
-        padding-bottom: 10px;
-        margin-bottom: 20px;
-        display: flex;
-        align-items: center;
-      }
-    
-      h2 i {
-        margin-right: 10px;
-        font-size: 1.2em;
-      }
-    
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&display=swap');
+  
+    :root {
+      --primary-color: #0099ff;
+      --secondary-color: #2ecc71;
+      --background-color: #ecf0f1;
+      --text-color: #34495e;
+      --card-bg: #ffffff;
+      --table-header-bg: #3498db;
+      --table-even-row: #f2f2f2;
+    }
+  
+    body {
+      font-family: 'Noto Sans TC', sans-serif;
+      background-color: var(--background-color);
+      color: var(--text-color);
+      line-height: 1.6;
+      margin: 0;
+      padding: 0;
+      user-select: none;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+    }
+  
+    .header {
+      background: linear-gradient(135deg, #f1faff, #cceafe);
+      color: white;
+      text-align: center;
+      padding: 60px 0;
+      margin-bottom: 30px;
+      clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+    }
+  
+    .header h1 {
+      margin: 0;
+      font-size: 2.8em;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    }
+  
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+  
+    .content {
+      background-color: var(--card-bg);
+      border-radius: 8px;
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+      padding: 30px;
+      margin-bottom: 30px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+  
+    .content:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+    }
+  
+    h1, h2, h3 {
+      color: var(--primary-color);
+      margin-top: 0;
+    }
+  
+    h2 {
+      border-bottom: 2px solid var(--primary-color);
+      padding-bottom: 10px;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+    }
+  
+    h2 i {
+      margin-right: 10px;
+      font-size: 1.2em;
+    }
+  
+    table {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0;
+      margin-top: 20px;
+      background-color: var(--card-bg);
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+  
+    th, td {
+      padding: 15px;
+      text-align: left;
+      border-bottom: 1px solid #ddd;
+    }
+  
+    th {
+      background-color: var(--table-header-bg);
+      color: white;
+      font-weight: bold;
+    }
+  
+    tr:last-child td {
+      border-bottom: none;
+    }
+  
+    tr:nth-child(even) {
+      background-color: var(--table-even-row);
+    }
+  
+    .chart-container {
+      width: 100%;
+      height: 400px;
+      margin-top: 30px;
+    }
+  
+    .analysis-section {
+      background-color: var(--card-bg);
+      padding: 30px;
+      margin-top: 30px;
+      border-radius: 8px;
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+  
+    .analysis-section:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+    }
+  
+    @media (max-width: 768px) {
       table {
-        width: 100%;
-        border-collapse: separate;
-        border-spacing: 0;
-        margin-top: 20px;
-        background-color: var(--card-bg);
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        border-radius: 8px;
-        overflow: hidden;
+        font-size: 0.8em;
       }
-    
-      th, td {
-        padding: 15px;
-        text-align: left;
-        border-bottom: 1px solid #ddd;
-      }
-    
-      th {
-        background-color: var(--table-header-bg);
-        color: white;
-        font-weight: bold;
-      }
-    
-      tr:last-child td {
-        border-bottom: none;
-      }
-    
-      tr:nth-child(even) {
-        background-color: var(--table-even-row);
-      }
-    
-      .chart-container {
-        width: 100%;
-        height: 400px;
-        margin-top: 30px;
-      }
-    
-      .analysis-section {
-        background-color: var(--card-bg);
-        padding: 30px;
-        margin-top: 30px;
-        border-radius: 8px;
-        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
-      }
-    
-      .analysis-section:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
-      }
-    
-      @media (max-width: 768px) {
-        table {
-          font-size: 0.8em;
-        }
-        
-        .header {
-          padding: 40px 0;
-        }
-        
-        .header h1 {
-          font-size: 2.2em;
-        }
-        
-        .content, .analysis-section {
-          padding: 20px;
-        }
-      }
-    
-      .btn {
-        display: inline-block;
-        background-color: var(--primary-color);
-        color: white;
-        padding: 12px 24px;
-        text-decoration: none;
-        border-radius: 30px;
-        transition: all 0.3s ease;
-        font-weight: bold;
-        text-transform: uppercase;
-        letter-spacing: 1px;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-      }
-    
-      .btn:hover {
-        background-color: var(--secondary-color);
-        transform: translateY(-2px);
-        box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
-      }
-    
-      .btn i {
-        margin-right: 8px;
-      }
-    
-      .stats-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-        gap: 20px;
-        margin-top: 30px;
-      }
-    
-      .stat-card {
-        background-color: var(--card-bg);
-        border-radius: 8px;
-        padding: 20px;
-        text-align: center;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
-      }
-    
-      .stat-card:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
-      }
-    
-      .stat-card i {
-        font-size: 2.5em;
-        color: var(--primary-color);
-        margin-bottom: 10px;
-      }
-    
-      .stat-card .stat-value {
-        font-size: 1.8em;
-        font-weight: bold;
-        color: var(--text-color);
-      }
-    
-      .stat-card .stat-label {
-        font-size: 0.9em;
-        color: #7f8c8d;
-      }
-    
-      .fade-in {
-        opacity: 0;
-        transform: translateY(20px);
-        transition: opacity 0.5s ease, transform 0.5s ease;
-      }
-    
-      .fade-in.visible {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    
-      .footer {
-        background-color: #34495e;
-        color: #ecf0f1;
-        text-align: center;
-        padding: 20px 0;
-        margin-top: 50px;
-      }
-    
-      .footer p {
-        margin: 5px 0;
-      }
-    
-      .watermark {
-        position: fixed;
-        bottom: 10px;
-        right: 10px;
-        font-size: 14px;
-        color: rgba(52, 73, 94, 0.5);
-        pointer-events: none;
-      }
-
-      :root {
-        --primary-color: #0099ff;
-        --secondary-color: #2ecc71;
-        --background-color: #ecf0f1;
-        --text-color: #34495e;
-        --card-bg: #ffffff;
-        --table-header-bg: #3498db;
-        --table-even-row: #f2f2f2;
-      }
-    
-      body {
-        font-family: 'Noto Sans TC', sans-serif;
-        background-color: var(--background-color);
-        color: var(--text-color);
-        line-height: 1.6;
-        margin: 0;
-        padding: 0;
-        user-select: none;
-        -webkit-user-select: none;
-        -moz-user-select: none;
-        -ms-user-select: none;
-      }
-    
-      .top-bar {
-        background-color: var(--primary-color);
-        color: white;
-        padding: 10px 0;
-        text-align: center;
-      }
-    
-      .top-bar-content {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        max-width: 1200px;
-        margin: 0 auto;
-        padding: 0 20px;
-      }
-    
-      .logo {
-        font-size: 1.5em;
-        font-weight: bold;
-      }
-    
-      .nav-links a {
-        color: white;
-        text-decoration: none;
-        margin-left: 20px;
-        transition: color 0.3s ease;
-      }
-    
-      .nav-links a:hover {
-        color: var(--secondary-color);
-      }
-    
+      
       .header {
-        background: linear-gradient(135deg, #f1faff, #cceafe);
-        color: var(--text-color);
-        text-align: center;
-        padding: 60px 0;
-        margin-bottom: 30px;
-        clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+        padding: 40px 0;
       }
-    
+      
       .header h1 {
-        margin: 0;
-        font-size: 2.8em;
-        text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        font-size: 2.2em;
       }
-    </style>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    </head>
+      
+      .content, .analysis-section {
+        padding: 20px;
+      }
+    }
+  
+    .btn {
+      display: inline-block;
+      background-color: var(--primary-color);
+      color: white;
+      padding: 12px 24px;
+      text-decoration: none;
+      border-radius: 30px;
+      transition: all 0.3s ease;
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+  
+    .btn:hover {
+      background-color: var(--secondary-color);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+    }
+  
+    .btn i {
+      margin-right: 8px;
+    }
+  
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+      margin-top: 30px;
+    }
+  
+    .stat-card {
+      background-color: var(--card-bg);
+      border-radius: 8px;
+      padding: 20px;
+      text-align: center;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+  
+    .stat-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+    }
+  
+    .stat-card i {
+      font-size: 2.5em;
+      color: var(--primary-color);
+      margin-bottom: 10px;
+    }
+  
+    .stat-card .stat-value {
+      font-size: 1.8em;
+      font-weight: bold;
+      color: var(--text-color);
+    }
+  
+    .stat-card .stat-label {
+      font-size: 0.9em;
+      color: #7f8c8d;
+    }
+  
+    .fade-in {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+  
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  
+    .footer {
+      background-color: #34495e;
+      color: #ecf0f1;
+      text-align: center;
+      padding: 20px 0;
+      margin-top: 50px;
+    }
+  
+    .footer p {
+      margin: 5px 0;
+    }
+  
+    .watermark {
+      position: fixed;
+      bottom: 10px;
+      right: 10px;
+      font-size: 14px;
+      color: rgba(52, 73, 94, 0.5);
+      pointer-events: none;
+    }
+
+    :root {
+      --primary-color: #0099ff;
+      --secondary-color: #2ecc71;
+      --background-color: #ecf0f1;
+      --text-color: #34495e;
+      --card-bg: #ffffff;
+      --table-header-bg: #3498db;
+      --table-even-row: #f2f2f2;
+    }
+  
+    body {
+      font-family: 'Noto Sans TC', sans-serif;
+      background-color: var(--background-color);
+      color: var(--text-color);
+      line-height: 1.6;
+      margin: 0;
+      padding: 0;
+      user-select: none;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+    }
+  
+  /* Add these styles to your existing CSS */
+  .top-bar {
+    background-color: var(--primary-color);
+    padding: 0;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+  }
+
+  .top-bar-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+
+  .logo {
+    font-size: 1.5em;
+    font-weight: bold;
+    color: white;
+    padding: 15px 0;
+  }
+
+  .nav-links {
+    display: flex;
+  }
+
+  .nav-links a {
+    color: white;
+    text-decoration: none;
+    padding: 15px 20px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+
+  .nav-links a:hover {
+    background-color: var(--secondary-color);
+    color: white;
+  }
+
+  /* Responsive menu */
+  .menu-toggle {
+    display: none;
+    color: white;
+    font-size: 1.5em;
+    cursor: pointer;
+  }
+
+  @media (max-width: 768px) {
+    .menu-toggle {
+      display: block;
+    }
+
+    .nav-links {
+      display: none;
+      flex-direction: column;
+      width: 100%;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      background-color: var(--primary-color);
+    }
+
+    .nav-links.active {
+      display: flex;
+    }
+
+    .nav-links a {
+      padding: 15px;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+  }
+  </style>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  </head>
 
 
-    <body oncontextmenu="return false;">
-        <div class="top-bar">
-          <div class="top-bar-content">
-            <div class="logo">TYCTW 會考分析</div>
-            <div class="nav-links">
-              <a href="https://sites.google.com/view/tyctw/">回到主網頁</a>
-              <a href="https://tyctw.github.io/">落點分析系統</a>
-              <a href="https://tyctw.github.io/Navigation/">更多資訊</a>
-            </div>
-          </div>
-        </div>
-    <body oncontextmenu="return false;">
-      <div class="header">
-        <h1><i class="fas fa-chart-line"></i> 全國會考成績AI生成全面分析</h1>
+  <div class="top-bar">
+    <div class="top-bar-content">
+      <div class="logo">TYCTW 會考分析</div>
+      <div class="menu-toggle" id="menuToggle">
+        <i class="fas fa-bars"></i>
       </div>
-    
-      <div class="container">
-        <div class="content fade-in">
-          <p>本報告提供了AI生成的全國會考的詳細成績分布和分析。我們將從多個角度探討學生的表現，包括各等級組合的分布、寫作測驗成績，以及整體趨勢分析。</p>
+      <nav class="nav-links" id="navLinks">
+        <a href="https://sites.google.com/view/tyctw/">首頁</a>
+        <a href="https://tyctw.github.io/">落點分析</a>
+        <a href="https://tyctw.github.io/Navigation/">資訊導覽</a>
+      </nav>
+    </div>
+  </div>
+  
+  <body oncontextmenu="return false;">
+    <div class="header">
+      <h1><i class="fas fa-chart-line"></i> 全國會考成績AI生成全面分析</h1>
+    </div>
+  
+    <div class="container">
+      <div class="content fade-in">
+        <p>本報告提供了AI生成的全國會考的詳細成績分布和分析。我們將從多個角度探討學生的表現，包括各等級組合的分布、寫作測驗成績，以及整體趨勢分析。</p>
+      </div>
+  
+      <div class="stats-grid fade-in">
+        <div class="stat-card">
+          <i class="fas fa-user-graduate"></i>
+          <div class="stat-value">189,168</div>
+          <div class="stat-label">總考生人數</div>
         </div>
-    
-        <div class="stats-grid fade-in">
-          <div class="stat-card">
-            <i class="fas fa-user-graduate"></i>
-            <div class="stat-value">189,168</div>
-            <div class="stat-label">總考生人數</div>
-          </div>
-          <div class="stat-card">
-            <i class="fas fa-star"></i>
-            <div class="stat-value">9.29%</div>
-            <div class="stat-label">5A0B0C比例</div>
-          </div>
-          <div class="stat-card">
-            <i class="fas fa-chart-bar"></i>
-            <div class="stat-value">22.75%</div>
-            <div class="stat-label">最多分布(0A5B0C)</div>
-          </div>
-          <div class="stat-card">
-            <i class="fas fa-pen-fancy"></i>
-            <div class="stat-value">4.05%</div>
-            <div class="stat-label">寫作六級分(5A0B0C類)</div>
-          </div>
+        <div class="stat-card">
+          <i class="fas fa-star"></i>
+          <div class="stat-value">9.29%</div>
+          <div class="stat-label">5A0B0C比例</div>
         </div>
-    
-        <div class="analysis-section fade-in">
-          <h2><i class="fas fa-chart-pie"></i> 1. 整體成績分布概況</h2>
-          <p>根據數據，我們可以觀察到以下幾個主要特點：</p>
-          <ul>
-            <li>最多學生（22.75%）落在 0A5B0C 類別，表示大多數學生在五個科目中達到基礎等級。</li>
-            <li>其次是 0A4B1C 類別（11.70%）和 1A4B0C 類別（10.99%），這表明有相當比例的學生在大部分科目達到基礎等級，但仍有一到兩科需要加強。</li>
-            <li>5A0B0C 類別（全科精熟）的學生佔 9.29%，這代表了頂尖表現的群體。</li>
-          </ul>
+        <div class="stat-card">
+          <i class="fas fa-chart-bar"></i>
+          <div class="stat-value">22.75%</div>
+          <div class="stat-label">最多分布(0A5B0C)</div>
         </div>
-    
-        <div class="chart-container fade-in">
-          <canvas id="distributionChart"></canvas>
-        </div>
-    
-        <div class="analysis-section fade-in">
-          <h2><i class="fas fa-pencil-alt"></i> 2. 寫作測驗成績分析</h2>
-          <p>寫作測驗的成績分布如下：</p>
-          <ul>
-            <li>六級分：表現最優異的群體，但比例相對較低。例如，在 5A0B0C 類別中，只有 4.05% 的學生獲得六級分。</li>
-            <li>五級分和四級分：這兩個等級佔據了大多數學生的成績。以 5A0B0C 類別為例，45.81% 獲得五級分，48.12% 獲得四級分。</li>
-            <li>三級分以下：通常佔比較小，但在某些類別中（如 0A0B5C）可能會有較高比例。</li>
-          </ul>
-          <p>這種分布表明，即使在學科成績表現優異的學生中，寫作能力的分布也呈現出一定的差異。</p>
-        </div>
-    
-        <div class="analysis-section fade-in">
-          <h2><i class="fas fa-lightbulb"></i> 3. 重要發現和趨勢</h2>
-          <ol>
-            <li><strong>基礎能力普及：</strong> 大多數學生至少達到了基礎等級，這表明教育體系在確保學生掌握基本知識和技能方面取得了一定成效。</li>
-            <li><strong>頂尖表現群體：</strong> 約 9.29% 的學生達到全科精熟（5A0B0C），這個比例值得關注，可能代表了未來升學競爭的核心群體。</li>
-            <li><strong>待加強群體：</strong> 有約 6.62% 的學生落在 0A0B5C 類別，表明仍有一定比例的學生在多個科目上需要額外的學習支持。</li>
-            <li><strong>寫作能力分布：</strong> 寫作測驗成績的分布相對集中在四級分和五級分，這可能反映了當前寫作教學的整體水平。</li>
-          </ol>
-        </div>
-    
-    
-    
-        <div class="content fade-in">
-          <p>想要獲得個人化的成績分析和升學建議，請使用我們的 <a href="https://tyctw.github.io/" class="btn"><i class="fas fa-chart-line"></i> 會考落點分析系統</a></p>
+        <div class="stat-card">
+          <i class="fas fa-pen-fancy"></i>
+          <div class="stat-value">4.05%</div>
+          <div class="stat-label">寫作六級分(5A0B0C類)</div>
         </div>
       </div>
-    
-      <div class="footer">
-        <p>&copy; 2024 TYCTW會考落點分析平台. 版權所有.</p>
-        <p>未經授權，禁止複製、散布或使用本報告的任何內容。</p>
+  
+      <div class="analysis-section fade-in">
+        <h2><i class="fas fa-chart-pie"></i> 1. 整體成績分布概況</h2>
+        <p>根據數據，我們可以觀察到以下幾個主要特點：</p>
+        <ul>
+          <li>最多學生（22.75%）落在 0A5B0C 類別，表示大多數學生在五個科目中達到基礎等級。</li>
+          <li>其次是 0A4B1C 類別（11.70%）和 1A4B0C 類別（10.99%），這表明有相當比例的學生在大部分科目達到基礎等級，但仍有一到兩科需要加強。</li>
+          <li>5A0B0C 類別（全科精熟）的學生佔 9.29%，這代表了頂尖表現的群體。</li>
+        </ul>
       </div>
-    
-      <div class="watermark">
-        TYCTW會考落點分析平台 
+  
+      <div class="chart-container fade-in">
+        <canvas id="distributionChart"></canvas>
       </div>
-    
-      <script>
-        const ctx = document.getElementById('distributionChart').getContext('2d');
-        new Chart(ctx, {
-          type: 'bar',
-          data: {
-            labels: ['5A0B0C', '4A1B0C', '3A2B0C', '2A3B0C', '1A4B0C', '0A5B0C', '0A4B1C', '0A3B2C', '0A2B3C', '0A1B4C', '0A0B5C'],
-            datasets: [{
-              label: '學生人數分布',
-              data: [17569, 10355, 10313, 13281, 20787, 43042, 22141, 15122, 11531, 9640, 12521],
-              backgroundColor: [
-                'rgba(255, 99, 132, 0.7)',
-                'rgba(54, 162, 235, 0.7)',
-                'rgba(255, 206, 86, 0.7)',
-                'rgba(75, 192, 192, 0.7)',
-                'rgba(153, 102, 255, 0.7)',
-                'rgba(255, 159, 64, 0.7)',
-                'rgba(199, 199, 199, 0.7)',
-                'rgba(83, 102, 255, 0.7)',
-                'rgba(255, 99, 132, 0.7)',
-                'rgba(54, 162, 235, 0.7)',
-                'rgba(255, 206, 86, 0.7)'
-              ],
-              borderColor: 'rgba(0, 0, 0, 0.2)',
-              borderWidth: 1
-            }]
+  
+      <div class="analysis-section fade-in">
+        <h2><i class="fas fa-pencil-alt"></i> 2. 寫作測驗成績分析</h2>
+        <p>寫作測驗的成績分布如下：</p>
+        <ul>
+          <li>六級分：表現最優異的群體，但比例相對較低。例如，在 5A0B0C 類別中，只有 4.05% 的學生獲得六級分。</li>
+          <li>五級分和四級分：這兩個等級佔據了大多數學生的成績。以 5A0B0C 類別為例，45.81% 獲得五級分，48.12% 獲得四級分。</li>
+          <li>三級分以下：通常佔比較小，但在某些類別中（如 0A0B5C）可能會有較高比例。</li>
+        </ul>
+        <p>這種分布表明，即使在學科成績表現優異的學生中，寫作能力的分布也呈現出一定的差異。</p>
+      </div>
+  
+      <div class="analysis-section fade-in">
+        <h2><i class="fas fa-lightbulb"></i> 3. 重要發現和趨勢</h2>
+        <ol>
+          <li><strong>基礎能力普及：</strong> 大多數學生至少達到了基礎等級，這表明教育體系在確保學生掌握基本知識和技能方面取得了一定成效。</li>
+          <li><strong>頂尖表現群體：</strong> 約 9.29% 的學生達到全科精熟（5A0B0C），這個比例值得關注，可能代表了未來升學競爭的核心群體。</li>
+          <li><strong>待加強群體：</strong> 有約 6.62% 的學生落在 0A0B5C 類別，表明仍有一定比例的學生在多個科目上需要額外的學習支持。</li>
+          <li><strong>寫作能力分布：</strong> 寫作測驗成績的分布相對集中在四級分和五級分，這可能反映了當前寫作教學的整體水平。</li>
+        </ol>
+      </div>
+  
+  
+  
+      <div class="content fade-in">
+        <p>想要獲得個人化的成績分析和升學建議，請使用我們的 <a href="https://tyctw.github.io/" class="btn"><i class="fas fa-chart-line"></i> 會考落點分析系統</a></p>
+      </div>
+    </div>
+  
+    <div class="footer">
+      <p>&copy; 2024 TYCTW會考落點分析平台. 版權所有.</p>
+      <p>未經授權，禁止複製、散布或使用本報告的任何內容。</p>
+    </div>
+  
+    <div class="watermark">
+      TYCTW會考落點分析平台 
+    </div>
+  
+    <script>
+      const ctx = document.getElementById('distributionChart').getContext('2d');
+      new Chart(ctx, {
+        type: 'bar',
+        data: {
+          labels: ['5A0B0C', '4A1B0C', '3A2B0C', '2A3B0C', '1A4B0C', '0A5B0C', '0A4B1C', '0A3B2C', '0A2B3C', '0A1B4C', '0A0B5C'],
+          datasets: [{
+            label: '學生人數分布',
+            data: [17569, 10355, 10313, 13281, 20787, 43042, 22141, 15122, 11531, 9640, 12521],
+            backgroundColor: [
+              'rgba(255, 99, 132, 0.7)',
+              'rgba(54, 162, 235, 0.7)',
+              'rgba(255, 206, 86, 0.7)',
+              'rgba(75, 192, 192, 0.7)',
+              'rgba(153, 102, 255, 0.7)',
+              'rgba(255, 159, 64, 0.7)',
+              'rgba(199, 199, 199, 0.7)',
+              'rgba(83, 102, 255, 0.7)',
+              'rgba(255, 99, 132, 0.7)',
+              'rgba(54, 162, 235, 0.7)',
+              'rgba(255, 206, 86, 0.7)'
+            ],
+            borderColor: 'rgba(0, 0, 0, 0.2)',
+            borderWidth: 1
+          }]
+        },
+        options: {
+          responsive: true,
+          plugins: {
+            legend: {
+              position: 'top',
+            },
+            title: {
+              display: true,
+              text: '各等級組合學生人數分布'
+            }
           },
-          options: {
-            responsive: true,
-            plugins: {
-              legend: {
-                position: 'top',
-              },
+          scales: {
+            y: {
+              beginAtZero: true,
               title: {
                 display: true,
-                text: '各等級組合學生人數分布'
+                text: '學生人數'
               }
             },
-            scales: {
-              y: {
-                beginAtZero: true,
-                title: {
-                  display: true,
-                  text: '學生人數'
-                }
-              },
-              x: {
-                title: {
-                  display: true,
-                  text: '等級組合'
-                }
+            x: {
+              title: {
+                display: true,
+                text: '等級組合'
               }
             }
           }
-        });
-    
-        // Fade-in animation
-        function handleIntersection(entries, observer) {
-          entries.forEach(entry => {
-            if (entry.isIntersecting) {
-              entry.target.classList.add('visible');
-              observer.unobserve(entry.target);
-            }
-          });
         }
-    
-        const observer = new IntersectionObserver(handleIntersection, {
-          root: null,
-          rootMargin: '0px',
-          threshold: 0.1
+      });
+  
+      // Fade-in animation
+      function handleIntersection(entries, observer) {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
+          }
         });
-    
-        document.querySelectorAll('.fade-in').forEach(element => {
-          observer.observe(element);
-        });
-    
-        // Prevent content copying
-        document.addEventListener('copy', function(e) {
-          e.preventDefault();
-          alert('抱歉，本報告內容受版權保護，不允許複製。');
-        });
-    
-        document.addEventListener('selectstart', function(e) {
-          e.preventDefault();
-        });
-    
-        // Disable right-click
-        document.addEventListener('contextmenu', function(e) {
-          e.preventDefault();
-          alert('抱歉，本頁面已禁用右鍵功能。');
-        });
-      </script>
-    </body></html>
+      }
+  
+      const observer = new IntersectionObserver(handleIntersection, {
+        root: null,
+        rootMargin: '0px',
+        threshold: 0.1
+      });
+  
+      document.querySelectorAll('.fade-in').forEach(element => {
+        observer.observe(element);
+      });
+  
+      // Prevent content copying
+      document.addEventListener('copy', function(e) {
+        e.preventDefault();
+        alert('抱歉，本報告內容受版權保護，不允許複製。');
+      });
+  
+      document.addEventListener('selectstart', function(e) {
+        e.preventDefault();
+      });
+  
+      // Disable right-click
+      document.addEventListener('contextmenu', function(e) {
+        e.preventDefault();
+        alert('抱歉，本頁面已禁用右鍵功能。');
+      });
+
+        // Add this script to your existing JavaScript
+  document.addEventListener('DOMContentLoaded', function() {
+    const menuToggle = document.getElementById('menuToggle');
+    const navLinks = document.getElementById('navLinks');
+
+    menuToggle.addEventListener('click', function() {
+      navLinks.classList.toggle('active');
+    });
+  });
+    </script>
+  </body></html>
