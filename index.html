@@ -602,9 +602,9 @@
         <h2><i class="fas fa-chart-pie"></i> 1. 整體成績分布概況</h2>
         <p>根據數據，我們可以觀察到以下幾個主要特點：</p>
         <ul>
-          <li>最多學生（22.75%）落在 0A5B0C 類別，表示大多數學生在五個科目中達到基礎等級。</li>
-          <li>其次是 0A4B1C 類別（11.70%）和 1A4B0C 類別（10.99%），這表明有相當比例的學生在大部分科目達到基礎等級，但仍有一到兩科需要加強。</li>
-          <li>5A0B0C 類別（全科精熟）的學生佔 9.29%，這代表了頂尖表現的群體。</li>
+          <li>最多學生（22.31%）落在 0A5B0C 類別，表示大多數學生在五個科目中達到基礎等級。</li>
+          <li>其次是 1A4B0C 類別（11.32%）和 0A4B1C 類別（11.43%），這表明有相當比例的學生在大部分科目達到基礎等級，但仍有一到兩科需要加強。</li>
+          <li>5A0B0C 類別（全科精熟）的學生佔 9.59%，這代表了頂尖表現的群體。</li>
         </ul>
       </div>
   
@@ -616,8 +616,8 @@
         <h2><i class="fas fa-pencil-alt"></i> 2. 寫作測驗成績分析</h2>
         <p>寫作測驗的成績分布如下：</p>
         <ul>
-          <li>六級分：表現最優異的群體，但比例相對較低。例如，在 5A0B0C 類別中，只有 4.05% 的學生獲得六級分。</li>
-          <li>五級分和四級分：這兩個等級佔據了大多數學生的成績。以 5A0B0C 類別為例，45.81% 獲得五級分，48.12% 獲得四級分。</li>
+          <li>六級分：表現最優異的群體，但比例相對較低。例如，在 5A0B0C 類別中，只有 3.27% 的學生獲得六級分。</li>
+          <li>五級分和四級分：這兩個等級佔據了大多數學生的成績。以 5A0B0C 類別為例，47.87% 獲得五級分，47.13% 獲得四級分。</li>
           <li>三級分以下：通常佔比較小，但在某些類別中（如 0A0B5C）可能會有較高比例。</li>
         </ul>
         <p>這種分布表明，即使在學科成績表現優異的學生中，寫作能力的分布也呈現出一定的差異。</p>
@@ -627,8 +627,8 @@
         <h2><i class="fas fa-lightbulb"></i> 3. 重要發現和趨勢</h2>
         <ol>
           <li><strong>基礎能力普及：</strong> 大多數學生至少達到了基礎等級，這表明教育體系在確保學生掌握基本知識和技能方面取得了一定成效。</li>
-          <li><strong>頂尖表現群體：</strong> 約 9.29% 的學生達到全科精熟（5A0B0C），這個比例值得關注，可能代表了未來升學競爭的核心群體。</li>
-          <li><strong>待加強群體：</strong> 有約 6.62% 的學生落在 0A0B5C 類別，表明仍有一定比例的學生在多個科目上需要額外的學習支持。</li>
+          <li><strong>頂尖表現群體：</strong> 約 9.59% 的學生達到全科精熟（5A0B0C），這個比例值得關注，可能代表了未來升學競爭的核心群體。</li>
+          <li><strong>待加強群體：</strong> 有約 5.80% 的學生落在 0A0B5C 類別，表明仍有一定比例的學生在多個科目上需要額外的學習支持。</li>
           <li><strong>寫作能力分布：</strong> 寫作測驗成績的分布相對集中在四級分和五級分，這可能反映了當前寫作教學的整體水平。</li>
         </ol>
       </div>
@@ -670,7 +670,7 @@
           labels: ['5A0B0C', '4A1B0C', '3A2B0C', '2A3B0C', '1A4B0C', '0A5B0C', '0A4B1C', '0A3B2C', '0A2B3C', '0A1B4C', '0A0B5C'],
           datasets: [{
             label: '學生人數分布',
-            data: [17569, 10355, 10313, 13281, 20787, 43042, 22141, 15122, 11531, 9640, 12521],
+            data: [16547, 9553, 9922, 12237, 19528, 38479, 19710, 13987, 10724, 8957, 9999],
             backgroundColor: [
               'rgba(74, 107, 255, 0.7)',
               'rgba(41, 70, 223, 0.7)',
@@ -731,7 +731,7 @@
               callbacks: {
                 label: function(context) {
                   let value = context.raw;
-                  let total = 189168;
+                  let total = 172481;
                   let percentage = Math.round((value / total) * 1000) / 10;
                   return `${value.toLocaleString()} 人 (${percentage}%)`;
                 }
@@ -805,10 +805,10 @@
             // Start number animations if it's the stats grid
             if (entry.target.classList.contains('stats-grid')) {
               setTimeout(() => {
-                animateNumber('countTotal', 0, 189168, 2000);
-                animateNumber('percent5A', 0, 9.29, 1500, '%');
-                animateNumber('percentMax', 0, 22.75, 1500, '%');
-                animateNumber('percentWriting', 0, 4.05, 1500, '%');
+                animateNumber('countTotal', 0, 172481, 2000);
+                animateNumber('percent5A', 0, 9.59, 1500, '%');
+                animateNumber('percentMax', 0, 22.31, 1500, '%');
+                animateNumber('percentWriting', 0, 3.27, 1500, '%');
               }, 500);
             }
             
